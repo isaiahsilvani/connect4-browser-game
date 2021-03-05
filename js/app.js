@@ -29,6 +29,8 @@ squares.forEach((square) => {
     square.addEventListener('click', handleClick)
   })
 
+resetBtn.addEventListener('click', init)
+
 /*-------------------------------- Functions --------------------------------*/
 function handleClick(evt) {
     let ele = evt.target
@@ -46,14 +48,18 @@ function handleClick(evt) {
             emptySpace.removeAttribute('class')
             emptySpace.setAttribute('class', 'player1')
             turn *= -1
+            console.log(board)
         } else {
             board[boardIdx] = -1
             emptySpace.removeAttribute('class')
             emptySpace.setAttribute('class', 'player2')
             turn *= -1
+            console.log(board)
         }
     }
 }
+
+
 // For some reason, this recursive function is console.logging the expected result but is return undefined
 // function lastEmptySpaceInColumn(position) {
 //     console.log('position', position)
@@ -97,6 +103,11 @@ function init() {
     ];
     turn = 1
     winner = null
+    //clear the actual board on the screen, not just the array in javascript
+    squares.forEach((square) => {
+        square.removeAttribute('class')
+        square.setAttribute('class', 'blank')
+      })
     render()
 }
 
