@@ -21,10 +21,16 @@ html {
     font-size: 62.5%;
   }
 
+  body {
+      background-color: #54B9C4;
+      display: flex;
+      justify-content: center;
+  }
+
 main {
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 10.66% 18.41% 47.98% 8.2% 14.75%;
+    grid-template-rows: 10.66% 18.41% 47.98% 12.2% 10.75%;
     grid-template-areas: 
     "title title"
     "player1-settings player2-settings"
@@ -32,16 +38,110 @@ main {
     "message message"
     "bottom bottom";
     width: 100%;
+    max-width: 390px;
+    min-width: 355px;
     height: 100vh;
 }
 
 #title {
     grid-area: title;
-    background: blue;
+    grid-column: span 2;
+    background: #00A9C2;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0 45px;
+    font-size: 3.3em;
 }
 
 .flex-center {
     display: flex;
     justify-content: center;
     align-self: center;
+}
+
+#player1-settings {
+    grid-area: player1-settings;
+    flex-direction: column;
+    text-align: center;
+    width: 85%;
+    margin: 15px;
+    font-size: 2.0em;
+    font-weight: bold;
+}
+
+#player2-settings {
+    grid-area: player2-settings;
+    flex-direction: column;
+    text-align: center;
+    width: 85%;
+    margin: 15px;
+    font-size: 2.0em;
+    font-weight: bold;
+}
+
+button {
+    margin: 10px;
+}
+
+b {
+    font-size: 1.3em;
+}
+
+
+
+#board-grid > div{
+    width: 35px;
+    height: 35px;
+    border: 2px solid black;
+    border-radius: 50%;
+    margin: 7px;
+}
+
+#whole-game {
+    grid-area: board;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+    background-color: blue;
+    border: 3px solid black;
+}
+
+#board-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.blank {
+     background-color: whitesmoke;
+}
+
+#message {
+    grid-area: message;
+    border: 3px solid black;
+    margin: 0 20px;
+    padding: 7px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+
+#message > h3 {
+    font-size: 1.5em;
+}
+
+#bottom {
+    grid-area: bottom;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+
+#bottom > button {
+    align-self: center;
+    font-size: 1.5em;
+    position: relative;
+    bottom: 15px;
+    
 }
