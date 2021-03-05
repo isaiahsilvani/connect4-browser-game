@@ -35,9 +35,10 @@ resetBtn.addEventListener('click', init)
 function handleClick(evt) {
     let ele = evt.target
     let position = ele.getAttribute('id')
-    if (ele.className === 'blank') {
-        position = Number(position)
-        position = position % 7
+    position = Number(position)
+    position = position % 7
+    let topRow = document.getElementById(position)
+    if (topRow.className === 'blank') {
         // if the top row of current column is null, increase position by 7. If new position on board is null, increasse by 7. If new position of board is null, increase by 7. If new position of board is filled with something other than null, go back 7 and change that element's class
         let boardIdx = lastEmptySpaceInColumnV2(position)
         let emptySpace = document.getElementById(`${boardIdx}`)
