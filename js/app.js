@@ -1,10 +1,10 @@
 /*-------------------------------- Constants --------------------------------*/
 const player1 = {
-    name: ''
+    name: 'Player 1'
 }
 
 const player2 = {
-    name: ''
+    name: 'Player 2'
 }
 
 
@@ -21,7 +21,7 @@ const player1nameBtn = document.getElementById('player1-btn')
 const player2nameInp = document.getElementById('player2-name')
 const player2nameBtn = document.getElementById('player2-btn')
 const squares = document.querySelectorAll('#board-grid > div')
-const message = document.getElementById('message')
+const msg = document.getElementById('message')
 const resetBtn = document.getElementById('resetBtn')
 /*----------------------------- Event Listeners -----------------------------*/
 //Add an event listener for every square on the board using forEach
@@ -48,34 +48,17 @@ function handleClick(evt) {
             emptySpace.removeAttribute('class')
             emptySpace.setAttribute('class', 'player1')
             turn *= -1
-            console.log(board)
         } else {
             board[boardIdx] = -1
             emptySpace.removeAttribute('class')
             emptySpace.setAttribute('class', 'player2')
             turn *= -1
-            console.log(board)
         }
+        render()
+        console.log(turn)
     }
+    
 }
-
-
-// For some reason, this recursive function is console.logging the expected result but is return undefined
-// function lastEmptySpaceInColumn(position) {
-//     console.log('position', position)
-//     let newPosition = position + 7;
-//     if (board[newPosition] === null) {
-//         lastEmptySpaceInColumn(newPosition)
-//     } else if (board[newPosition] !== null) {
-//         console.log('finalPosition', newPosition)
-//         //THIS IS WHERE THE PROBLEM IS!!
-//         console.log(newPosition - 7)
-//         console.log('for the love of god return test please')
-//         return "test"
-//     }
-// }
-
-
 
 function lastEmptySpaceInColumnV2(position) {
     let newPosition = position + 7
@@ -112,7 +95,12 @@ function init() {
 }
 
 function render() {
-
+    //See who's turn it is currently, display to msg output
+    if (turn === 1) {
+        msg.innerText = `It is now ${player1.name}'s turn`
+    } else {
+        msg.innerText = `It is now ${player2.name}'s turn`
+    }
 }
 
 init()
