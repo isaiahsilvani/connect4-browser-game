@@ -1,7 +1,10 @@
 /*-------------------------------- Constants --------------------------------*/
-const colors = {
-    '1': 'red',
-    '-1': 'yellow'
+const player1 = {
+    name: ''
+}
+
+const player2 = {
+    name: ''
 }
 
 
@@ -34,14 +37,21 @@ function handleClick(evt) {
         position = Number(position)
         position = position % 7
         // if the top row of current column is null, increase position by 7. If new position on board is null, increasse by 7. If new position of board is null, increase by 7. If new position of board is filled with something other than null, go back 7 and change that element's class
-        let emptySpace = document.getElementById(`${lastEmptySpaceInColumnV2(position)}`)
+        let boardIdx = lastEmptySpaceInColumnV2(position)
+        let emptySpace = document.getElementById(`${boardIdx}`)
         console.log(emptySpace)
         //Now, set class of the emptySpace element to either player-2 or player-1, depending on what the turn is set to. Then, multiply turn by -1 to switch 
-        // if (turn === 1) {
-        //     emptySpace.removeAttribute('class')
-        //     emptySpace.setAttribute('class', )
-        // }
-
+        if (turn === 1) {
+            board[boardIdx] = 1
+            emptySpace.removeAttribute('class')
+            emptySpace.setAttribute('class', 'player1')
+            turn *= -1
+        } else {
+            board[boardIdx] = -1
+            emptySpace.removeAttribute('class')
+            emptySpace.setAttribute('class', 'player2')
+            turn *= -1
+        }
     }
 }
 // For some reason, this recursive function is console.logging the expected result but is return undefined
