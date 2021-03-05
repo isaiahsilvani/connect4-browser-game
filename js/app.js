@@ -31,7 +31,26 @@ squares.forEach((square) => {
 
 resetBtn.addEventListener('click', init)
 
+player1nameBtn.addEventListener('click', setPlayer1name)
+player2nameBtn.addEventListener('click', setPlayer2name)
+
 /*-------------------------------- Functions --------------------------------*/
+
+function setPlayer2name() {
+    let name = player2nameInp.value
+    player2nameInp.value = ''
+    player2.name = name
+    render()
+}
+
+function setPlayer1name() {
+    let name = player1nameInp.value
+    player1nameInp.value = ''
+    player1.name = name
+    render()
+}
+
+
 function handleClick(evt) {
     let ele = evt.target
     let position = ele.getAttribute('id')
@@ -56,7 +75,6 @@ function handleClick(evt) {
             turn *= -1
         }
         render()
-        console.log(turn)
     }
     
 }
