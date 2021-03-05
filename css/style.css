@@ -81,6 +81,13 @@ main {
     font-weight: bold;
 }
 
+.player2 {
+    background-color: red;
+}
+.player1 {
+    background: yellow;
+}
+
 button {
     margin: 10px;
 }
