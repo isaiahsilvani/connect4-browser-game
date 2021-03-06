@@ -12,6 +12,7 @@ const player2 = {
 let board;
 let turn;
 let winner;
+let turnCount;
 
 let player1name;
 let player2name;
@@ -60,7 +61,6 @@ function handleClick(evt) {
     if (board[row][column] === null && winner === null) {
         row = nextEmptyRow(column)
         position = `${"" + row + column}`
-        console.log(position)
         let emptySpace = document.getElementById(`${position}`)
         //Then, set the corresponding cell on the HTML page to match whoever's turn it is
         if (turn === 1) {
@@ -112,6 +112,7 @@ function init() {
     ];
     turn = 1
     winner = null
+    turnCount = 0
     //clear the actual board on the screen, not just the array in javascript
     squares.forEach((square) => {
         square.removeAttribute('class')
@@ -120,16 +121,18 @@ function init() {
     render()
 }
 
-
+function checkBoard() {
+    checkUpDiagnols()
+    checkRows()
+    checkDownDiagnols()
+    checkColumns()
+}
 
 
 
 function render() {
     //Display output message for who's turn it is and if anyone has won the game, or if it's a tie game
-    checkUpDiagnols()
-    checkRows()
-    checkDownDiagnols()
-    checkColumns()
+    checkBoard()
     // checkUpDiagnols()
     // checkColumns()
     // checkDownDiagnols()
@@ -148,9 +151,9 @@ function turnSwitchMsg() {
         msg.innerText = `${player2.name} won the game!!`
         
     } else if (turn === 1) {
-        msg.innerText = `It is now ${player1.name}'s turn`
-    } else {
-        msg.innerText = `It is now ${player2.name}'s turn`
+        msg.textContent = `It is now ${player1.name}'s turn`
+    } else if (turn === -1) {
+        msg.textContent = `It is now ${player2.name}'s turn`
     }
 }
 

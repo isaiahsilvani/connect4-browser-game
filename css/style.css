@@ -22,7 +22,8 @@ html {
   }
 
   body {
-      background-color: #54B9C4;
+
+      background-image: url('/Users/home/Downloads/fake_luxury/fake_luxury.png');
       display: flex;
       justify-content: center;
   }
@@ -135,8 +136,16 @@ b {
     border-radius: 10px;
 }
 
+.player1turn {
+    background-color: yellow;
+}
+
+.player2turn {
+    background-color: red;
+}
+
 #message > h3 {
-    font-size: 1.5em;
+    font-size: 2em;
 }
 
 #bottom {
