@@ -75,9 +75,9 @@ function handleClick(evt) {
         }
 
     }
-    checkRows()
-    checkCols()
+
     render()
+    checkDownDiagnols()
 }
 
 function nextEmptyRow(column) {
@@ -109,7 +109,7 @@ function init() {
         [null, null, null, null, null, null, null], 
         [null, null, null, null, null, null, null], 
         [null, null, null, null, null, null, null], 
-        ['btm', 'btm', 'btm', 'btm', 'btm', 'btm', 'btm']
+        ['btm0', 'btm1', 'btm2', 'btm3', 'btm4', 'btm5', 'btm6']
     ];
     turn = 1
     winner = null
@@ -169,7 +169,6 @@ function checkRows() {
             let val1 = board[r][c + 1]
             let val2 = board[r][c + 2]
             let val3 = board[r][c + 3]
-            console.log('values being checked by the board: ', val0, val1, val2, val3)
             //check if any of the values in the 4 rows are the same
             if (val0 === val1 && val1 === val2 && val2 === val3) {
                 console.log('winner')
@@ -181,14 +180,13 @@ function checkRows() {
     }
 }
 
-function checkCols() {
+function checkColumns() {
     for (let c = 0; c <= 6; c++) {
         for (let r = 0; r <= 5; r++) {
             let val0 = board[r][c]
             let val1 = board[r + 1][c]
             let val2 = board[r + 2][c]
             let val3 = board[r + 3][c]
-            console.log('values being checked by the board: ', val0, val1, val2, val3)
             //check if any of the values in the 4 rows are the same
             if (val0 === val1 && val1 === val2 && val2 === val3) {
                 console.log('winner')
@@ -198,3 +196,20 @@ function checkCols() {
     }
 }
 
+function checkDownDiagnols() {
+    for (let r = 0; r <= 3; r++) {
+        for (let c = 0; c <= 3; c++) {
+            let val0 = board[c][r]
+            let val1 = board[c + 1][r + 1]
+            let val2 = board[c + 2][r + 2]
+            let val3 = board[c + 3][r + 3]
+            console.log(val0, val1, val2, val3)
+            if (val0 !== null) {
+                if (val0 === val1 && val1 === val2 && val2 === val3) {
+                    console.log('winner')
+                    break;
+                }
+            }
+        }
+    }
+}
