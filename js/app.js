@@ -68,14 +68,17 @@ function handleClick(evt) {
             emptySpace.setAttribute('class', 'player1')
             board[row][column] = 1
             turn *= -1
+            console.log(board)
         } else {
             emptySpace.removeAttribute('class')
             emptySpace.setAttribute('class', 'player2')
             board[row][column] = -1
             turn *= -1
+            console.log(board)
         }
 
     }
+    render()
 }
 
 function nextEmptyRow(column) {
@@ -124,7 +127,14 @@ function init() {
 
 
 function render() {
-    //CHECK IF THERE IS A WINNING COMBINATION IF THERE IS CURRENTLY NOT A WINNER
+    //Display output message for who's turn it is and if anyone has won the game, or if it's a tie game
+    turnSwitchMsg()
+}
+
+init()
+
+// WINNING LOGIC
+function turnSwitchMsg() {
     if (winner === 'player1') {
         msg.innerText = `${player1.name} won the game!!`
 
@@ -136,13 +146,7 @@ function render() {
     } else {
         msg.innerText = `It is now ${player2.name}'s turn`
     }
-    //checkBoard(board)
 }
-
-init()
-
-// WINNING LOGIC
-
 
 
 //CHECK FOR A ROW OF SAME ELEMENTS
@@ -157,6 +161,15 @@ function checkWinner(val) {
     }
 }
 
-
+//Create a function to check if there are any rows of 4. Go down each row, check consecutive column spaces
+function checkRows() {
+    let row = 0
+    let column = 0
+    for (let i = row; i <= 5; i++) {
+        for (let j = column; j <= 6; j++) {
+            
+        }
+    }
+}
 
 
