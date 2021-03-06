@@ -73,11 +73,9 @@ function handleClick(evt) {
             board[row][column] = -1
             turn *= -1
         }
-
     }
 
     render()
-    checkUpDiagnols()
 }
 
 function nextEmptyRow(column) {
@@ -127,6 +125,13 @@ function init() {
 
 function render() {
     //Display output message for who's turn it is and if anyone has won the game, or if it's a tie game
+    checkUpDiagnols()
+    checkRows()
+    checkDownDiagnols()
+    checkColumns()
+    // checkUpDiagnols()
+    // checkColumns()
+    // checkDownDiagnols()
     turnSwitchMsg()
     //Check for a winner
 }
@@ -171,26 +176,27 @@ function checkRows() {
             let val3 = board[r][c + 3]
             //check if any of the values in the 4 rows are the same
             if (val0 === val1 && val1 === val2 && val2 === val3) {
-                console.log('winner')
-                break;
+                checkWinner(val0)
+                break
             }
         }
-
-
     }
 }
 
 function checkColumns() {
-    for (let c = 0; c <= 6; c++) {
-        for (let r = 0; r <= 5; r++) {
+    for (let r = 0; r <= 2; r++) {
+        for (let c = 0; c <= 6; c++) {
             let val0 = board[r][c]
             let val1 = board[r + 1][c]
             let val2 = board[r + 2][c]
             let val3 = board[r + 3][c]
-            //check if any of the values in the 4 rows are the same
-            if (val0 === val1 && val1 === val2 && val2 === val3) {
-                console.log('winner')
-                break;
+
+            if (val0 !== null) {
+                if (val0 === val1 && val1 === val2 && val2 === val3) {
+                    checkWinner(val0)
+                    console.log('up column win')
+                    break
+                }
             }
         }
     }
@@ -206,8 +212,9 @@ function checkDownDiagnols() {
             console.log(val0, val1, val2, val3)
             if (val0 !== null) {
                 if (val0 === val1 && val1 === val2 && val2 === val3) {
-                    console.log('winner')
-                    break;
+                    checkWinner(val0)
+                    console.log('down diagnol win')
+                    break
                 }
             }
         }
@@ -225,8 +232,9 @@ function checkUpDiagnols() {
 
             if (val0 !== null) {
                 if (val0 === val1 && val1 === val2 && val2 === val3) {
-                    console.log('winner')
-                    break;
+                    checkWinner(val0)
+                    console.log('up diagnol win')
+                    break
                 }
             }
         }
