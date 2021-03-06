@@ -77,7 +77,7 @@ function handleClick(evt) {
     }
 
     render()
-    checkDownDiagnols()
+    checkUpDiagnols()
 }
 
 function nextEmptyRow(column) {
@@ -204,6 +204,25 @@ function checkDownDiagnols() {
             let val2 = board[c + 2][r + 2]
             let val3 = board[c + 3][r + 3]
             console.log(val0, val1, val2, val3)
+            if (val0 !== null) {
+                if (val0 === val1 && val1 === val2 && val2 === val3) {
+                    console.log('winner')
+                    break;
+                }
+            }
+        }
+    }
+}
+
+function checkUpDiagnols() {
+    for (let c = 3; c <= 5; c++) {
+        for (let r = 0; r <= 3; r++) {
+            console.log(c, r)
+            let val0 = board[c][r]
+            let val1 = board[c - 1][r + 1]
+            let val2 = board[c - 2][r + 2]
+            let val3 = board[c - 3][r + 3]
+
             if (val0 !== null) {
                 if (val0 === val1 && val1 === val2 && val2 === val3) {
                     console.log('winner')
