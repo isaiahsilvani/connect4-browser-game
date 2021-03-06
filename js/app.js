@@ -60,7 +60,6 @@ function handleClick(evt) {
     if (board[row][column] === null && winner === null) {
         row = nextEmptyRow(column)
         position = `${"" + row + column}`
-        console.log('next position right here: ', position)
         let emptySpace = document.getElementById(`${position}`)
         //Then, set the corresponding cell on the HTML page to match whoever's turn it is
         if (turn === 1) {
@@ -68,16 +67,15 @@ function handleClick(evt) {
             emptySpace.setAttribute('class', 'player1')
             board[row][column] = 1
             turn *= -1
-            console.log(board)
         } else {
             emptySpace.removeAttribute('class')
             emptySpace.setAttribute('class', 'player2')
             board[row][column] = -1
             turn *= -1
-            console.log(board)
         }
 
     }
+    checkRows()
     render()
 }
 
@@ -129,6 +127,7 @@ function init() {
 function render() {
     //Display output message for who's turn it is and if anyone has won the game, or if it's a tie game
     turnSwitchMsg()
+    //Check for a winner
 }
 
 init()
@@ -164,11 +163,21 @@ function checkWinner(val) {
 //Create a function to check if there are any rows of 4. Go down each row, check consecutive column spaces
 function checkRows() {
     let row = 0
-    let column = 0
     for (let i = row; i <= 5; i++) {
-        for (let j = column; j <= 6; j++) {
-            
+        for (let j = 0; j <= 6; j++) {
+            console.log(i, j)
+            let val0 = board[i][j]
+            let val1 = board[i][j + 1]
+            let val2 = board[i][j + 2]
+            let val3 = board[i][j + 3]
+            console.log('values being checked by the board: ', val0, val1, val2, val3)
+            //check if any of the values in the 4 rows are the same
+            if (val0 === val1 && val1 === val2 && val2 === val3) {
+                console.log('winner')
+            }
         }
+
+
     }
 }
 
