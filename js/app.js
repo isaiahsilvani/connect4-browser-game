@@ -60,6 +60,7 @@ function handleClick(evt) {
     if (board[row][column] === null && winner === null) {
         row = nextEmptyRow(column)
         position = `${"" + row + column}`
+        console.log(position)
         let emptySpace = document.getElementById(`${position}`)
         //Then, set the corresponding cell on the HTML page to match whoever's turn it is
         if (turn === 1) {
@@ -194,7 +195,6 @@ function checkColumns() {
             if (val0 !== null) {
                 if (val0 === val1 && val1 === val2 && val2 === val3) {
                     checkWinner(val0)
-                    console.log('up column win')
                     break
                 }
             }
@@ -209,11 +209,9 @@ function checkDownDiagnols() {
             let val1 = board[c + 1][r + 1]
             let val2 = board[c + 2][r + 2]
             let val3 = board[c + 3][r + 3]
-            console.log(val0, val1, val2, val3)
             if (val0 !== null) {
                 if (val0 === val1 && val1 === val2 && val2 === val3) {
                     checkWinner(val0)
-                    console.log('down diagnol win')
                     break
                 }
             }
@@ -224,7 +222,6 @@ function checkDownDiagnols() {
 function checkUpDiagnols() {
     for (let c = 3; c <= 5; c++) {
         for (let r = 0; r <= 3; r++) {
-            console.log(c, r)
             let val0 = board[c][r]
             let val1 = board[c - 1][r + 1]
             let val2 = board[c - 2][r + 2]
@@ -233,7 +230,6 @@ function checkUpDiagnols() {
             if (val0 !== null) {
                 if (val0 === val1 && val1 === val2 && val2 === val3) {
                     checkWinner(val0)
-                    console.log('up diagnol win')
                     break
                 }
             }
