@@ -76,6 +76,7 @@ function handleClick(evt) {
 
     }
     checkRows()
+    checkCols()
     render()
 }
 
@@ -162,18 +163,17 @@ function checkWinner(val) {
 
 //Create a function to check if there are any rows of 4. Go down each row, check consecutive column spaces
 function checkRows() {
-    let row = 0
-    for (let i = row; i <= 5; i++) {
-        for (let j = 0; j <= 6; j++) {
-            console.log(i, j)
-            let val0 = board[i][j]
-            let val1 = board[i][j + 1]
-            let val2 = board[i][j + 2]
-            let val3 = board[i][j + 3]
+    for (let r = 0; r <= 5; r++) {
+        for (let c = 0; c <= 6; c++) {
+            let val0 = board[r][c]
+            let val1 = board[r][c + 1]
+            let val2 = board[r][c + 2]
+            let val3 = board[r][c + 3]
             console.log('values being checked by the board: ', val0, val1, val2, val3)
             //check if any of the values in the 4 rows are the same
             if (val0 === val1 && val1 === val2 && val2 === val3) {
                 console.log('winner')
+                break;
             }
         }
 
@@ -181,4 +181,20 @@ function checkRows() {
     }
 }
 
+function checkCols() {
+    for (let c = 0; c <= 6; c++) {
+        for (let r = 0; r <= 5; r++) {
+            let val0 = board[r][c]
+            let val1 = board[r + 1][c]
+            let val2 = board[r + 2][c]
+            let val3 = board[r + 3][c]
+            console.log('values being checked by the board: ', val0, val1, val2, val3)
+            //check if any of the values in the 4 rows are the same
+            if (val0 === val1 && val1 === val2 && val2 === val3) {
+                console.log('winner')
+                break;
+            }
+        }
+    }
+}
 
