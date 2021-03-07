@@ -14,7 +14,7 @@ let board;
 let turn;
 let winner;
 let turnCount;
-let soundToggle = false
+let soundToggle;
 
 let player1name;
 let player2name;
@@ -81,6 +81,7 @@ function handleClick(evt) {
             turn *= -1
             playSound()
         }
+        turnCount++
     }
 
     render()
@@ -125,6 +126,7 @@ function init() {
     turn = 1
     winner = null
     turnCount = 0
+    soundToggle = false;
     //clear the actual board on the screen, not just the array in javascript
     squares.forEach((square) => {
         square.removeAttribute('class')
@@ -138,12 +140,16 @@ function checkBoard() {
     checkRows()
     checkDownDiagnols()
     checkColumns()
+    // if the maximum amount of turns has been taken, set winner to 'T'
+    if (turnCount === 42) {
+        winner = 'T'
+    }
 }
 
 
 
 function render() {
-    //Display output message for who's turn it is and if anyone has won the game, or if it's a tie game
+    //Display output message for who's turn it is and if 
     checkBoard()
     // checkUpDiagnols()
     // checkColumns()
@@ -158,16 +164,29 @@ init()
 function turnSwitchMsg() {
     if (winner === 'player1') {
         msg.innerText = `${player1.name} won the game!!`
+        msg.style.backgroundColor = '#dce629'
         confetti.start(1500)
-        cheerSound.play()
+        if (soundToggle === true) {
+            cheerSound.play()
+        }
+        
     } else if (winner === 'player2') {
         msg.innerText = `${player2.name} won the game!!`
+        msg.style.backgroundColor = '#F27672'
         confetti.start(1500)
+        if (soundToggle === true) {
+            cheerSound.play()
+        }
+        
         cheerSound.play()
     } else if (turn === 1) {
         msg.textContent = `It is now ${player1.name}'s turn`
+        msg.style.backgroundColor = '#dce629'
     } else if (turn === -1) {
         msg.textContent = `It is now ${player2.name}'s turn`
+        msg.style.backgroundColor = '#F27672'
+    } else {
+        msg.textContent = `${player1.name} and ${player2.name} tied!`
     }
 }
 
@@ -261,3 +280,5 @@ function toggleSound() {
         soundToggle = false;
     }
 }
+
+// if there is a tie, do something
