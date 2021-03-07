@@ -31,7 +31,7 @@ body {
 main {
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 12.66% 16.41% 47.98% 12.2% 10.75%;
+    grid-template-rows: 14.66% 13.41% 48.98% 12.2% 10.75%;
     grid-template-areas: 
     "title title"
     "player1-settings player2-settings"
@@ -44,11 +44,14 @@ main {
 #title {
     grid-area: title;
     box-shadow: inset 0 0 10px;
+    position: relative;
+    top: 10px;
     letter-spacing: 0.3em;
     grid-column: span 2;
     background: hsl(188, 100%, 38%);
     border: 3px solid black;
     border-radius: 20px;
+    height: 70%;
     display: flex;
     align-content: center;
     padding: 10px;
@@ -66,7 +69,8 @@ main {
     justify-content: center;
     text-align: center;
     flex-direction: column;
-    width: 70%;
+    align-items: center;
+    width: 100%;
     font-size: 1.5em;
     font-weight: bold;
 }
@@ -77,8 +81,9 @@ main {
     grid-area: player2-settings;
     text-align: center;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    width: 70%;
+    width: 100%;
     font-size: 1.5em;
     font-weight: bold;
 }
@@ -92,7 +97,7 @@ main {
     box-shadow: 2px 2px 3px black inset;
 }
 
-#board-grid > div{#044cba
+#board-grid > div{
     width: 38px;
     height: 38px;
     border: 2px solid black;
@@ -183,4 +188,8 @@ svg {
     margin: 5px;
     width: 100px;
     height: 30px;
+}
+
+input {
+    width: 80%;
 }
