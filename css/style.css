@@ -85,9 +85,11 @@ main {
 
 .player2 {
     background-color: #d41515;
+    box-shadow: 2px 2px 3px black inset;
 }
 .player1 {
     background: #dce629;
+    box-shadow: 2px 2px 3px black inset;
 }
 
 #board-grid > div{#044cba
