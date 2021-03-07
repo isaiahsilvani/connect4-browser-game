@@ -7,8 +7,8 @@ const player2 = {
     name: 'Player 2'
 }
 
-const sound = new Audio('../audio/sound.mp3')
-
+const pieceSound = new Audio('../audio/sound.mp3')
+const cheerSound = new Audio('../audio/cheers.mp3')
 /*-------------------------------- Variables --------------------------------*/
 let board;
 let turn;
@@ -104,7 +104,7 @@ function nextEmptyRow(column) {
 //If soundToggle === true, play sound when player takes a turn
 function playSound() {
     if (soundToggle === true) {
-        sound.play()
+        pieceSound.play()
     }
 }
 
@@ -159,10 +159,12 @@ init()
 function turnSwitchMsg() {
     if (winner === 'player1') {
         msg.innerText = `${player1.name} won the game!!`
-
+        confetti.start(1500)
+        cheerSound.play()
     } else if (winner === 'player2') {
         msg.innerText = `${player2.name} won the game!!`
-        
+        confetti.start(1500)
+        cheerSound.play()
     } else if (turn === 1) {
         msg.textContent = `It is now ${player1.name}'s turn`
     } else if (turn === -1) {
