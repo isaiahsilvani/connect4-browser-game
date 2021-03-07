@@ -7,14 +7,14 @@ const player2 = {
     name: 'Player 2'
 }
 
-const pieceSound = new Audio('../audio/sound.mp3')
+const pieceSound = new Audio('../audio/click.mp3')
 const cheerSound = new Audio('../audio/cheers.mp3')
 /*-------------------------------- Variables --------------------------------*/
 let board;
 let turn;
 let winner;
 let turnCount;
-let soundToggle;
+let soundToggle = false
 
 let player1name;
 let player2name;
@@ -125,7 +125,6 @@ function init() {
     turn = 1
     winner = null
     turnCount = 0
-    soundToggle = false;
     //clear the actual board on the screen, not just the array in javascript
     squares.forEach((square) => {
         square.removeAttribute('class')
