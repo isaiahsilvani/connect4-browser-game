@@ -177,16 +177,17 @@ function turnSwitchMsg() {
         if (soundToggle === true) {
             cheerSound.play()
         }
-        
         cheerSound.play()
-    } else if (turn === 1) {
+    }  else if (winner === 'T') {
+        msg.textContent = `${player1.name} and ${player2.name} tied!`
+        msg.style.backgroundColor = '#e3e3e3'
+    }
+    else if (turn === 1) {
         msg.textContent = `It is now ${player1.name}'s turn`
         msg.style.backgroundColor = '#dce629'
     } else if (turn === -1) {
         msg.textContent = `It is now ${player2.name}'s turn`
         msg.style.backgroundColor = '#F27672'
-    } else {
-        msg.textContent = `${player1.name} and ${player2.name} tied!`
     }
 }
 
