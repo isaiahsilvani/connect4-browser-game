@@ -7,12 +7,14 @@ const player2 = {
     name: 'Player 2'
 }
 
+const sound = new Audio('../audio/sound.mp3')
 
 /*-------------------------------- Variables --------------------------------*/
 let board;
 let turn;
 let winner;
 let turnCount;
+let soundToggle;
 
 let player1name;
 let player2name;
@@ -24,6 +26,7 @@ const player2nameBtn = document.getElementById('player2-btn')
 const squares = document.querySelectorAll('#board-grid > div')
 const msg = document.getElementById('message')
 const resetBtn = document.getElementById('resetBtn')
+const soundBtn = document.getElementById('soundBtn')
 /*----------------------------- Event Listeners -----------------------------*/
 //Add an event listener for every square on the board using forEach
 squares.forEach((square) => {
@@ -34,6 +37,8 @@ resetBtn.addEventListener('click', init)
 
 player1nameBtn.addEventListener('click', setPlayer1name)
 player2nameBtn.addEventListener('click', setPlayer2name)
+
+soundBtn.addEventListener('click', toggleSound)
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -68,11 +73,13 @@ function handleClick(evt) {
             emptySpace.setAttribute('class', 'player1')
             board[row][column] = 1
             turn *= -1
+            playSound()
         } else {
             emptySpace.removeAttribute('class')
             emptySpace.setAttribute('class', 'player2')
             board[row][column] = -1
             turn *= -1
+            playSound()
         }
     }
 
@@ -94,7 +101,12 @@ function nextEmptyRow(column) {
 // If the column beneath the same row is empty, check the next one! If it's not, come back to the original empty column you just left and get it's position
 
 
-
+//If soundToggle === true, play sound when player takes a turn
+function playSound() {
+    if (soundToggle === true) {
+        sound.play()
+    }
+}
 
 
 
@@ -113,6 +125,7 @@ function init() {
     turn = 1
     winner = null
     turnCount = 0
+    soundToggle = false;
     //clear the actual board on the screen, not just the array in javascript
     squares.forEach((square) => {
         square.removeAttribute('class')
@@ -237,5 +250,13 @@ function checkUpDiagnols() {
                 }
             }
         }
+    }
+}
+
+function toggleSound() {
+    if (soundToggle === false) {
+        soundToggle = true;
+    } else {
+        soundToggle = false;
     }
 }
