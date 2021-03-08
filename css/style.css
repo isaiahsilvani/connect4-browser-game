@@ -295,4 +295,7 @@ input {
         font-size: 8em;
         letter-spacing: 0.5em;
     }
+    #message {
+        font-size: 4em;
+    }
 }
