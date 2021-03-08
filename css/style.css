@@ -102,7 +102,7 @@ img {
     box-shadow: 2px 2px 3px black inset;
 }
 
-#board-grid > div{
+#board-grid > div {
     width: 65%;
     height: 65%;
     border: 2px solid black;
@@ -111,13 +111,6 @@ img {
     align-self: center;
     border-radius: 50%;
 }
-
-#board-grid > div:after {
-    display: block;
-    padding-top: 100%;
-    content: '';
-}
-
 
 #whole-game {
     grid-area: board;

@@ -9,6 +9,7 @@ const player2 = {
 
 const pieceSound = new Audio('../audio/click.mp3')
 const cheerSound = new Audio('../audio/Audience_Applause-Matthiew11-1206899159.mp3')
+const awwSound = new Audio('../audio/awww.mp3')
 /*-------------------------------- Variables --------------------------------*/
 let board;
 let turn;
@@ -103,9 +104,12 @@ function turnSwitchMsg() {
         }
         cheerSound.play()
     }  else if (winner === 'T') {
-        //if player1 and player2 names are both long strings, decrease font size to avoid breakage
         msg.textContent = `It's a tie!`
         msg.style.backgroundColor = '#e3e3e3'
+        // if soundToggle is on, play an awww sound
+        if (soundToggle === true) {
+            awwSound.play()
+        }
     }
     else if (turn === 1) {
         msg.textContent = `It is now ${player1.name}'s turn`
@@ -162,9 +166,6 @@ function reset() {
         turn = -1
     }
     //Set msg font size back to normal if it was reduced in tie function
-    if (winner === 'T') {
-        msg.style.fontSize = 'inherit'
-    }
     winner = null
     //keep track of how many turns to check for ties
     turnCount = 0
@@ -306,6 +307,5 @@ function checkWinner(val) {
         winner = 'player2'
     }
 }
-
 
 init()
