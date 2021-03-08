@@ -77,7 +77,11 @@ main {
     font-weight: bold;
 }
 
-
+img {
+    width: 50px;
+    height: 50px;
+    margin: 5px 10px;
+}
 
 #player2-settings {
     grid-area: player2-settings;
@@ -107,6 +111,12 @@ main {
     justify-self: center;
     align-self: center;
     border-radius: 50%;
+}
+
+#board-grid > div:after {
+    display: block;
+    padding-top: 100%;
+    content: '';
 }
 
 
@@ -161,10 +171,6 @@ button {
     height: 50px;
     width: 60px;
     margin: 0;
-}
-
-svg {
-    margin: 5px 10px;
 }
 
 #socials {
@@ -240,7 +246,6 @@ input {
         margin: 10px;
         width: 130px;
     }
-
     #message {
         margin: 8px;
         position: relative;
@@ -255,8 +260,9 @@ input {
     #whole-game {
         width: 96%;
         height: 96%;
-        height: 100%;
-        margin: 15px;
+        margin-bottom: 50px;
+        justify-content: center;
+        align-items: flex-end;
     }
 }
 /*laptop viewport*/
@@ -269,6 +275,7 @@ input {
     #title {
         width: 80%;
         font-size: 4em;
+        min-height: 73px;
         height: 65%;
         letter-spacing: 0.4em;
         align-items: center;
@@ -298,4 +305,30 @@ input {
     #message {
         font-size: 4em;
     }
+    #player1-settings, #player2-settings {
+        font-size: 4em;
+    }
+    #soundBtn, #resetBtn {
+        width: 45%;
+        height: 50%;
+        font-size: 4em;
+    }
+    #player2-settings > button {
+        width: 60%;
+        font-size: 0.6em;
+        margin-top: 1em;
+        height: 100%;
+    }
+    #player1-settings > button {
+        width: 60%;
+        margin-top: 1em;
+        font-size: 0.6em;
+        height: 100%;
+    }
+
+    img {
+        width: 50%;
+        height: 50%;
+    }
+    
 }

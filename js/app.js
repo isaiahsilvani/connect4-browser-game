@@ -44,16 +44,17 @@ soundBtn.addEventListener('click', toggleSound)
 
 function setPlayer2name() {
     let name = player2nameInp.value
-    name = name[0].toUpperCase + name.slice(1).toLowerCase()
+    name = name[0].toUpperCase() + name.slice(1).toLowerCase()
     player2.name = name
+    player2nameInp.value = ''
     render()
 }
 
 function setPlayer1name() {
     let name = player1nameInp.value
-    console.log(name)
     name = name[0].toUpperCase() + name.slice(1).toLowerCase()
     player1.name = name
+    player1nameInp.value = ''
     render()
 }
 
