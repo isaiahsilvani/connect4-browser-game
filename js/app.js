@@ -1,14 +1,14 @@
 /*-------------------------------- Constants --------------------------------*/
 const player1 = {
-    name: 'Player 1'
+    name: ''
 }
 
 const player2 = {
-    name: 'Player 2'
+    name: ''
 }
 
 const pieceSound = new Audio('../audio/click.mp3')
-const cheerSound = new Audio('../audio/cheers.mp3')
+const cheerSound = new Audio('../audio/Audience_Applause-Matthiew11-1206899159.mp3')
 /*-------------------------------- Variables --------------------------------*/
 let board;
 let turn;
@@ -33,7 +33,7 @@ squares.forEach((square) => {
     square.addEventListener('click', handleClick)
   })
 
-resetBtn.addEventListener('click', init)
+resetBtn.addEventListener('click', reset)
 
 player1nameBtn.addEventListener('click', setPlayer1name)
 player2nameBtn.addEventListener('click', setPlayer2name)
@@ -41,23 +41,80 @@ player2nameBtn.addEventListener('click', setPlayer2name)
 soundBtn.addEventListener('click', toggleSound)
 
 /*-------------------------------- Functions --------------------------------*/
-
-function setPlayer2name() {
-    let name = player2nameInp.value
-    name = name[0].toUpperCase() + name.slice(1).toLowerCase()
-    player2.name = name
-    player2nameInp.value = ''
+// ---- CORE FUNCTIONS THAT MAKE THE GAME ---
+function init() {
+    //SET AN ARRAY TO REPRESENT THE GAME BOARD, PLAYER 1 = TURN WINNER IS NULL
+    board = [
+        [null, null, null, null, null, null, null], 
+        [null, null, null, null, null, null, null], 
+        [null, null, null, null, null, null, null], 
+        [null, null, null, null, null, null, null], 
+        [null, null, null, null, null, null, null], 
+        [null, null, null, null, null, null, null], 
+        ['btm0', 'btm1', 'btm2', 'btm3', 'btm4', 'btm5', 'btm6']
+    ];
+    //randomize who starts first
+    if ((Math.round(Math.random())) === 1 ) {
+        turn = 1
+    } else {
+        turn = -1
+    }
+    //Set player names to default
+    player1.name = 'Player 1'
+    player2.name = 'Player 2'
+    winner = null
+    //keep track of how many turns to check for ties
+    turnCount = 0
+    //Have sound off when user first comes to page
+    soundToggle = false;
+    //clear the actual board on the screen, not just the array in javascript
+    squares.forEach((square) => {
+        square.removeAttribute('class')
+        square.setAttribute('class', 'blank')
+      })
     render()
 }
 
-function setPlayer1name() {
-    let name = player1nameInp.value
-    name = name[0].toUpperCase() + name.slice(1).toLowerCase()
-    player1.name = name
-    player1nameInp.value = ''
-    render()
+function render() {
+    //Display output message for who's turn it is and if 
+    checkBoard()
+    // checkUpDiagnols()
+    // checkColumns()
+    // checkDownDiagnols()
+    turnSwitchMsg()
+    //Check for a winner
 }
 
+function turnSwitchMsg() {
+    if (winner === 'player1') {
+        msg.innerText = `${player1.name} won the game!!`
+        msg.style.backgroundColor = '#dce629'
+        confetti.start(1500)
+        if (soundToggle === true) {
+            cheerSound.play()
+        }
+        
+    } else if (winner === 'player2') {
+        msg.innerText = `${player2.name} won the game!!`
+        msg.style.backgroundColor = '#F27672'
+        confetti.start(1500)
+        if (soundToggle === true) {
+            cheerSound.play()
+        }
+        cheerSound.play()
+    }  else if (winner === 'T') {
+        //if player1 and player2 names are both long strings, decrease font size to avoid breakage
+        msg.textContent = `It's a tie!`
+        msg.style.backgroundColor = '#e3e3e3'
+    }
+    else if (turn === 1) {
+        msg.textContent = `It is now ${player1.name}'s turn`
+        msg.style.backgroundColor = '#dce629'
+    } else if (turn === -1) {
+        msg.textContent = `It is now ${player2.name}'s turn`
+        msg.style.backgroundColor = '#F27672'
+    }
+}
 
 function handleClick(evt) {
     let ele = evt.target
@@ -87,7 +144,70 @@ function handleClick(evt) {
         render()
     }
 }
+// ------------ SETTINGS ---------------------
+function reset() {
+    board = [
+        [null, null, null, null, null, null, null], 
+        [null, null, null, null, null, null, null], 
+        [null, null, null, null, null, null, null], 
+        [null, null, null, null, null, null, null], 
+        [null, null, null, null, null, null, null], 
+        [null, null, null, null, null, null, null], 
+        ['btm0', 'btm1', 'btm2', 'btm3', 'btm4', 'btm5', 'btm6']
+    ];
+    //randomize who starts first
+    if ((Math.round(Math.random())) === 1 ) {
+        turn = 1
+    } else {
+        turn = -1
+    }
+    //Set msg font size back to normal if it was reduced in tie function
+    if (winner === 'T') {
+        msg.style.fontSize = 'inherit'
+    }
+    winner = null
+    //keep track of how many turns to check for ties
+    turnCount = 0
+    //clear the actual board on the screen, not just the array in javascript
+    squares.forEach((square) => {
+        square.removeAttribute('class')
+        square.setAttribute('class', 'blank')
+      })
+      
+    render()
+}
 
+function toggleSound() {
+    if (soundToggle === false) {
+        soundToggle = true;
+    } else {
+        soundToggle = false;
+    }
+}
+
+function setPlayer2name() {
+    let name = player2nameInp.value
+    name = name[0].toUpperCase() + name.slice(1).toLowerCase()
+    player2.name = name
+    player2nameInp.value = ''
+    render()
+}
+
+function setPlayer1name() {
+    let name = player1nameInp.value
+    name = name[0].toUpperCase() + name.slice(1).toLowerCase()
+    player1.name = name
+    player1nameInp.value = ''
+    render()
+}
+// ---- SMALL HELPER FUNCTIONS ---------------
+//If soundToggle === true, play sound when player takes a turn
+function playSound() {
+    if (soundToggle === true) {
+        pieceSound.play()
+    }
+}
+// If column beneath same row is empty, check the next one! If not, get original position
 function nextEmptyRow(column) {
     let nextRow = 0
     for (i = 0; i < 7; i++) {
@@ -98,44 +218,7 @@ function nextEmptyRow(column) {
         }
     }
 }
-
-
-// If the column beneath the same row is empty, check the next one! If it's not, come back to the original empty column you just left and get it's position
-
-
-//If soundToggle === true, play sound when player takes a turn
-function playSound() {
-    if (soundToggle === true) {
-        pieceSound.play()
-    }
-}
-
-
-
-// return the number of the last empty space of a connect4 board, by checking to see if it's null. If we get a position >= 35, we have identifed that we are at the bottom of the board and it is time to break the loop and set the corresponding div id element with a player1 or player2 color
-function init() {
-    //SET AN ARRAY TO REPRESENT THE GAME BOARD, PLAYER 1 = TURN WINNER IS NULL
-    board = [
-        [null, null, null, null, null, null, null], 
-        [null, null, null, null, null, null, null], 
-        [null, null, null, null, null, null, null], 
-        [null, null, null, null, null, null, null], 
-        [null, null, null, null, null, null, null], 
-        [null, null, null, null, null, null, null], 
-        ['btm0', 'btm1', 'btm2', 'btm3', 'btm4', 'btm5', 'btm6']
-    ];
-    turn = 1
-    winner = null
-    turnCount = 0
-    soundToggle = false;
-    //clear the actual board on the screen, not just the array in javascript
-    squares.forEach((square) => {
-        square.removeAttribute('class')
-        square.setAttribute('class', 'blank')
-      })
-    render()
-}
-
+// ------------ WINNING LOGIC ----------------
 function checkBoard() {
     checkUpDiagnols()
     checkRows()
@@ -147,65 +230,6 @@ function checkBoard() {
     }
 }
 
-
-
-function render() {
-    //Display output message for who's turn it is and if 
-    checkBoard()
-    // checkUpDiagnols()
-    // checkColumns()
-    // checkDownDiagnols()
-    turnSwitchMsg()
-    //Check for a winner
-}
-
-init()
-
-// WINNING LOGIC
-function turnSwitchMsg() {
-    if (winner === 'player1') {
-        msg.innerText = `${player1.name} won the game!!`
-        msg.style.backgroundColor = '#dce629'
-        confetti.start(1500)
-        if (soundToggle === true) {
-            cheerSound.play()
-        }
-        
-    } else if (winner === 'player2') {
-        msg.innerText = `${player2.name} won the game!!`
-        msg.style.backgroundColor = '#F27672'
-        confetti.start(1500)
-        if (soundToggle === true) {
-            cheerSound.play()
-        }
-        cheerSound.play()
-    }  else if (winner === 'T') {
-        msg.textContent = `${player1.name} and ${player2.name} tied!`
-        msg.style.backgroundColor = '#e3e3e3'
-    }
-    else if (turn === 1) {
-        msg.textContent = `It is now ${player1.name}'s turn`
-        msg.style.backgroundColor = '#dce629'
-    } else if (turn === -1) {
-        msg.textContent = `It is now ${player2.name}'s turn`
-        msg.style.backgroundColor = '#F27672'
-    }
-}
-
-
-//CHECK FOR A ROW OF SAME ELEMENTS
-
-
-
-function checkWinner(val) {
-    if (val === 1) {
-        winner = 'player1'
-    } else if (val === -1) {
-        winner = 'player2'
-    }
-}
-
-//Create a function to check if there are any rows of 4. Go down each row, check consecutive column spaces
 function checkRows() {
     for (let r = 0; r <= 5; r++) {
         for (let c = 0; c <= 6; c++) {
@@ -275,12 +299,13 @@ function checkUpDiagnols() {
     }
 }
 
-function toggleSound() {
-    if (soundToggle === false) {
-        soundToggle = true;
-    } else {
-        soundToggle = false;
+function checkWinner(val) {
+    if (val === 1) {
+        winner = 'player1'
+    } else if (val === -1) {
+        winner = 'player2'
     }
 }
 
-// if there is a tie, do something
+
+init()
