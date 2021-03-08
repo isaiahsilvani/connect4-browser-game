@@ -31,7 +31,7 @@ body {
 main {
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 14.66% 13.41% 48.98% 12.2% 10.75%;
+    grid-template-rows: 14.66% 13.41% 47.98% 13.2% 10.75%;
     grid-template-areas: 
     "title title"
     "player1-settings player2-settings"
@@ -46,6 +46,7 @@ main {
     box-shadow: inset 0 0 10px;
     position: relative;
     top: 10px;
+    font-weight: 900;
     letter-spacing: 0.3em;
     grid-column: span 2;
     background: hsl(188, 100%, 38%);
@@ -113,8 +114,8 @@ main {
     align-content: center;
     background-color: blue;
     border: 3px solid black;
-    width: 370px;
-    height: 315px;
+    width: 100%;
+    height: 100%;
 }
 
 #board-grid {
@@ -162,11 +163,13 @@ svg {
 }
 
 #socials {
+    grid-area: socials;
     display: flex;
     justify-content: start;
 }
 
 #buttons {
+    grid-area: buttons;
     display: flex;
     justify-content: end ;
 }
@@ -192,4 +195,60 @@ svg {
 
 input {
     width: 80%;
+}
+/*Responsive Design for Horizontal Phone*/
+@media only screen and (min-width: 720px) {
+    main {
+        display: grid;
+        grid-template-columns: 22.41% 22.41% 36.51% 18.67%;
+        grid-template-rows: 20.92% 40.98% 18.71% 19.37%;
+        grid-template-areas: 
+        "title title title socials"
+        "player1-settings player2-settings board board"
+        "message message board board"
+        "buttons buttons board board";
+        height: 100vh;
+    }
+
+    #title {
+        grid-column: span 3;
+        height: 50%;
+        font-size: 2.3em;
+        padding: 3px;
+        letter-spacing: 1.3em;
+        border-radius: 0px;
+        margin: 0px 10px;
+    }
+    input {
+        margin: 20px;
+    }
+    #buttons {
+        justify-content: space-between;
+    }
+    
+    #soundBtn {
+        margin: 10px;
+        width: 130px;
+    }
+    #resetBtn {
+        margin: 10px;
+        width: 130px;
+    }
+
+    #message {
+        margin: 8px;
+        position: relative;
+        font-size: 1.8em;
+    }
+
+    #socials {
+        align-items: center;
+        margin: 20px 0 0 0;
+    }
+    
+    #whole-game {
+        width: 96%;
+        height: 100%;
+        margin: 15px;
+    }
 }
