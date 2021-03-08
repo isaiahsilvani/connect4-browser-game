@@ -8,8 +8,11 @@ const player2 = {
 }
 
 const pieceSound = new Audio('../audio/click.mp3')
+pieceSound.volume = 0.3
 const cheerSound = new Audio('../audio/Audience_Applause-Matthiew11-1206899159.mp3')
+cheerSound.volume = 0.2
 const awwSound = new Audio('../audio/awww.mp3')
+awwSound.volume = 0.4
 /*-------------------------------- Variables --------------------------------*/
 let board;
 let turn;
@@ -113,7 +116,7 @@ function turnSwitchMsg() {
     }
     else if (turn === 1) {
         msg.textContent = `It is now ${player1.name}'s turn`
-        msg.style.backgroundColor = '#dce629'
+        msg.style.backgroundColor = '#EBEE96'
     } else if (turn === -1) {
         msg.textContent = `It is now ${player2.name}'s turn`
         msg.style.backgroundColor = '#F27672'

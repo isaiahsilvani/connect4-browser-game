@@ -22,10 +22,13 @@ html {
   }
 
 body {
-      background-image: url('../images/cutcube.png');
-      display: flex;
-      justify-content: center;
-
+      /*background-image: url('../images/cutcube.png');*/
+    background: -webkit-linear-gradient(70deg, #FEFEDF  30%, rgba(0,0,0,0) 30%), -webkit-linear-gradient(30deg, #63e89e 60%, #ff7ee3 60%);
+    background: -o-linear-gradient(70deg, #FEFEDF  30%, rgba(0,0,0,0) 30%), -o-linear-gradient(30deg, #63e89e 60%, #ff7ee3 60%);
+    background: -moz-linear-gradient(70deg, #FEFEDF  30%, rgba(0,0,0,0) 30%), -moz-linear-gradient(30deg, #63e89e 60%, #ff7ee3 60%);
+    background: linear-gradient(70deg, #FEFEDF  30%, rgba(0,0,0,0) 30%), linear-gradient(30deg, #63e89e 60%, #ff7ee3 60%);
+    display: flex;
+    justify-content: center;
   }
 
 main {
@@ -56,6 +59,7 @@ main {
     display: flex;
     align-content: center;
     padding: 5px;
+    min-height: 50px;
     margin: 10px;
     font-size: 4em;
 }
@@ -98,7 +102,7 @@ img {
     box-shadow: 2px 2px 3px black inset;
 }
 .player1 {
-    background: #dce629;
+    background: #fff810;
     box-shadow: 2px 2px 3px black inset;
 }
 
@@ -112,6 +116,12 @@ img {
     border-radius: 50%;
 }
 
+#board-grid > div::after {
+    display: block;
+    padding-top: 100%;
+    content: '';
+}
+
 #whole-game {
     grid-area: board;
     display: flex;
@@ -121,6 +131,7 @@ img {
     background-color: blue;
     border: 3px solid black;
     margin: 7px 6px 0 6px;
+    min-height: 210px;
     height: 100%;
 }
 
@@ -222,6 +233,7 @@ input {
         grid-column: span 3;
         height: 50%;
         font-size: 2.3em;
+        align-items: center;
         padding: 3px;
         letter-spacing: 1.3em;
         border-radius: 0px;
@@ -274,7 +286,6 @@ input {
         min-height: 73px;
         height: 65%;
         letter-spacing: 0.4em;
-        align-items: center;
     }
 
     #socials {
