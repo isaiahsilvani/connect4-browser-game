@@ -52,7 +52,7 @@ main {
     font-weight: 900;
     letter-spacing: 0.2em;
     grid-column: span 2;
-    background: hsl(188, 100%, 38%);
+    background: #00C6FF;
     border: 3px solid black;
     border-radius: 20px;
     height: 70%;
