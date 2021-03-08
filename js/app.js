@@ -82,9 +82,8 @@ function handleClick(evt) {
             playSound()
         }
         turnCount++
+        render()
     }
-
-    render()
 }
 
 function nextEmptyRow(column) {
