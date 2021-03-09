@@ -231,6 +231,7 @@ input {
     #board-grid > div {
         width: 65%;
         height: 65%;
+        max-height: 40px;
         border: 2px solid black;
         position: relative;
         justify-self: center;

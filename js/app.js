@@ -37,7 +37,7 @@ squares.forEach((square) => {
     square.addEventListener('click', handleClick)
   })
 
-resetBtn.addEventListener('click', reset)
+resetBtn.addEventListener('click', clearBoard)
 
 player1nameBtn.addEventListener('click', setPlayer1name)
 player2nameBtn.addEventListener('click', setPlayer2name)
@@ -48,35 +48,15 @@ soundBtn.addEventListener('click', toggleSound)
 // ---- CORE FUNCTIONS THAT MAKE THE GAME ---
 function init() {
     //SET AN ARRAY TO REPRESENT THE GAME BOARD, PLAYER 1 = TURN WINNER IS NULL
-    board = [
-        [null, null, null, null, null, null, null], 
-        [null, null, null, null, null, null, null], 
-        [null, null, null, null, null, null, null], 
-        [null, null, null, null, null, null, null], 
-        [null, null, null, null, null, null, null], 
-        [null, null, null, null, null, null, null], 
-        ['btm0', 'btm1', 'btm2', 'btm3', 'btm4', 'btm5', 'btm6']
-    ];
+    
     //randomize who starts first
-    if ((Math.round(Math.random())) === 1 ) {
-        turn = 1
-    } else {
-        turn = -1
-    }
     //Set player names to default
     player1.name = 'Player 1'
     player2.name = 'Player 2'
-    winner = null
-    //keep track of how many turns to check for ties
-    turnCount = 0
     //Have sound off when user first comes to page
     soundToggle = false;
     //clear the actual board on the screen, not just the array in javascript
-    squares.forEach((square) => {
-        square.removeAttribute('class')
-        square.setAttribute('class', 'blank')
-      })
-    render()
+    clearBoard()
 }
 
 function render() {
@@ -93,19 +73,13 @@ function turnSwitchMsg() {
     if (winner === 'player1') {
         msg.innerText = `${player1.name} won the game!!`
         msg.style.backgroundColor = '#dce629'
-        confetti.start(1500)
-        if (soundToggle === true) {
-            cheerSound.play()
-        }
+        cheer()
         
     } else if (winner === 'player2') {
         msg.innerText = `${player2.name} won the game!!`
         msg.style.backgroundColor = '#F27672'
-        confetti.start(1500)
-        if (soundToggle === true) {
-            cheerSound.play()
-        }
-        cheerSound.play()
+        cheer()
+
     }  else if (winner === 'T') {
         msg.textContent = `It's a tie!`
         msg.style.backgroundColor = '#e3e3e3'
@@ -152,34 +126,7 @@ function handleClick(evt) {
     }
 }
 // ------------ SETTINGS ---------------------
-function reset() {
-    board = [
-        [null, null, null, null, null, null, null], 
-        [null, null, null, null, null, null, null], 
-        [null, null, null, null, null, null, null], 
-        [null, null, null, null, null, null, null], 
-        [null, null, null, null, null, null, null], 
-        [null, null, null, null, null, null, null], 
-        ['btm0', 'btm1', 'btm2', 'btm3', 'btm4', 'btm5', 'btm6']
-    ];
-    //randomize who starts first
-    if ((Math.round(Math.random())) === 1 ) {
-        turn = 1
-    } else {
-        turn = -1
-    }
-    //Set msg font size back to normal if it was reduced in tie function
-    winner = null
-    //keep track of how many turns to check for ties
-    turnCount = 0
-    //clear the actual board on the screen, not just the array in javascript
-    squares.forEach((square) => {
-        square.removeAttribute('class')
-        square.setAttribute('class', 'blank')
-      })
-      
-    render()
-}
+
 
 function toggleSound() {
     if (soundToggle === false) {
@@ -221,6 +168,40 @@ function nextEmptyRow(column) {
             return nextRow -= 1
         }
     }
+}
+
+function cheer() {
+    confetti.start(1500)
+    if (soundToggle === true) {
+        cheerSound.play()
+    }
+}
+
+function clearBoard() {
+    // clear board in 2D array data model
+    board = [
+        [null, null, null, null, null, null, null], 
+        [null, null, null, null, null, null, null], 
+        [null, null, null, null, null, null, null], 
+        [null, null, null, null, null, null, null], 
+        [null, null, null, null, null, null, null], 
+        [null, null, null, null, null, null, null], 
+        ['btm0', 'btm1', 'btm2', 'btm3', 'btm4', 'btm5', 'btm6']
+    ];
+    //clear board that player sees, set winner to null, turn count to 0
+    squares.forEach((square) => {
+        square.removeAttribute('class')
+        square.setAttribute('class', 'blank')
+      })
+    winner = null
+    turnCount = 0
+    // randomize who goes first
+    if ((Math.round(Math.random())) === 1 ) {
+        turn = 1
+    } else {
+        turn = -1
+    }
+    render()
 }
 // ------------ WINNING LOGIC ----------------
 function checkBoard() {
