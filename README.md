@@ -37,17 +37,18 @@
         4. Set up grid-area of each HTML element on the page
         5. Set flex-display settings for the elements so they appear as they do in the wire frame
 3. WRITE THE JAVASCRIPT
-    1. Set up player1 and player2 objects, and give them default key-value pairs of name: player1 || player 2, and color: red || yellow
-    2. Set up ability to change player1 and player2 properties using the input fields, set buttons and DOM manipulation. NO COLOR INPUT FOR NOW WORK ON FUNCIONALITY OF THE GAME
-        1. Get the player name and color input that the user put in the input field
+    1. Set up player1 and player2 objects, and give them default key-value pairs of name: player1 || player 2
+    2. Set up ability to change player1 and player2 properties using the input fields, 
+        1. Get the player1 and player2 name 
         2. Use that text to replace the corresponding keys with new values provided by input field upon set button being clicked to corresponding player
-        3. Set both name and color input fields back to an empty string. DO NOT ACTUALLY USE THESE NAMES AND COLORS TO TRACK THE BOARD. A user can break your code simply by changing these key-value pairs mid game. 1 will represent player1 behind the scene, -1 will represent player 2 behind the scenes.
+        3. Set both name from input field to JS data object model. DO NOT ACTUALLY USE THESE NAMES TRACK THE BOARD. A user can break your code simply by changing these key-value pairs mid game. "1" will represent player1 behind the scene, "-1" will represent player 2 behind the scenes.
         4. Change innerText of button from "Set" to "Set!"change color and disable to event listener to avoid code break
     3. Set the turn to = 1 to represent player one going first. There will be a message ouput, "player 1 go first" upon inititilization
     4. Create 2D array to represent the board in initilization. For each child div in the board-game div create an object wth key-value pairs of  make an array up to 7 elements long and push that to the intial board array. Keep pushing 7 element long arrays until you looped through every child div in the board-game div
     5. Add event listeners to every cell. When clicked, program will check if that cell's column has an available row. If so, go down the column and check what the next available spot is. The cell becomes occupied if the cell "underneath it"'s object.turn = 1 || -1, or if the last cell is at the very bottom
-    6. For every click/turn, check to see if we have any winning combinations of conditions (if it's in a row for player1 or player2) 
-    7. When we have that winning combition, set isWinner(), display congradulations output, throw in some confetti and disable clicking on the board
+    6. For every click/turn, check to see if we have any winning combinations of conditions, if it's in a row for player1 or player2. Since we're using a 2D array, we can seperate the row and column and do math to target the cells in a row
+    7. When we have that winning combition, set isWinner to the player, display congradulations output, throw in some confetti and disable clicking on the board
+    8. Count how many turns are taken by each player. There are a total of 42 turns that can be taken. When 42 turns has been reached, display tied game message and play awwww sound
 
 
 ## Credit
