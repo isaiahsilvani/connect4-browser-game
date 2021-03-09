@@ -1,4 +1,5 @@
 # Thank you for checking out my game!
+## Play this game [now!](connect4-browser-game.surge.sh)
 ## Wireframe
 ![Connect 4 Wireframe](images/connect4-wireframe.png)
 ## User Story
