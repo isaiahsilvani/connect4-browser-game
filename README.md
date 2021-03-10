@@ -59,3 +59,6 @@
 
 #### Styling
 [Multi-Color Background](https://blog.prototypr.io/css-only-multi-color-backgrounds-4d96a5569a20)
+
+#### Effects
+[Confetti](https://www.npmjs.com/package/confetti-js)
