@@ -138,17 +138,26 @@ function toggleSound() {
 
 function setPlayer2name() {
     let name = player2nameInp.value
-    name = name[0].toUpperCase() + name.slice(1).toLowerCase()
-    player2.name = name
-    player2nameInp.value = ''
+    if (name.indexOf(" ") > -1) {
+        player2.name = formatName(name)
+        player2nameInp.value = ''
+    } else {
+        name = name[0].toUpperCase() + name.slice(1).toLowerCase()
+        player2.name = name
+        player2nameInp.value = ''
+    }
     render()
 }
-
 function setPlayer1name() {
     let name = player1nameInp.value
-    name = name[0].toUpperCase() + name.slice(1).toLowerCase()
-    player1.name = name
-    player1nameInp.value = ''
+    if (name.indexOf(" ") > -1) {
+        player1.name = formatName(name)
+        player1nameInp.value = ''
+    } else {
+        name = name[0].toUpperCase() + name.slice(1).toLowerCase()
+        player1.name = name
+        player1nameInp.value = ''
+    }
     render()
 }
 // ---- SMALL HELPER FUNCTIONS ---------------
@@ -168,6 +177,15 @@ function nextEmptyRow(column) {
             return nextRow -= 1
         }
     }
+}
+// If name is split with a space, format it properly
+function formatName(name) {
+    let fullName = name.split(" ")
+    let firstName = fullName[0]
+    let lastName = fullName[1]
+    //format strings to full name,
+    fullName = (firstName[0].toUpperCase() + firstName.slice(1).toLowerCase() + " " + (lastName[0].toUpperCase() + lastName.slice(1).toLowerCase()))
+    return fullName
 }
 
 function cheer() {
