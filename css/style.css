@@ -98,11 +98,11 @@ img {
 
 .player2 {
     background-color: #d41515;
-    box-shadow: 2px 2px 3px black inset;
+    box-shadow: 0.25em 0.25em 0.25em black inset;
 }
 .player1 {
     background: #fff810;
-    box-shadow: 2px 2px 3px black inset;
+    box-shadow: 0.25em 0.25em 0.25em black inset;
 }
 
 #whole-game {
@@ -338,6 +338,9 @@ input {
     #player1-settings, #player2-settings {
         font-size: 4em;
     }
+    .player1, .player2 {
+        box-shadow: 0.4em 0.4em 0.4em inset
+    }
     #soundBtn, #resetBtn {
         width: 45%;
         height: 50%;
@@ -347,6 +350,7 @@ input {
         justify-content: center;
         padding-bottom: 1.6em;
     }
+
     #player2-settings > button {
         width: 60%;
         font-size: 0.6em;
