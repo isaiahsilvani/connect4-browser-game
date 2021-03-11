@@ -1,17 +1,23 @@
-# Thank you for checking out my game!
+# CONNECT4, THE BROWSER GAME
+### Thank you for checking out my game!
 ## Play this game [now!](https://www.connect4-browser-game.surge.sh)
 ## Wireframe
 ![Connect 4 Wireframe](images/connect4-wireframe.png)
-## User Story
-1. User loads page, and board is randomly set to either have Player 1 or Player 2 go first.
-2. Players will have option to customize their names
-3. The message output field will have a background color to signify who's turn it currently is
-4. When player selects an empty white space on the board, whether filled or empty, program will check for the next empty  space by checking the column top to bottom; like a human would
-5. The last empty space in the selected column will turn to the current player's color
-6. The turn is switched to the other player, message output is set to that player's color, and empty white space is filled with other player color upon click
-7. Keep rotating turns until a row of 4 is met, in either a ROW, COLUMN, DOWN-DIAGNOL or UP-DIAGNOL direction.
-8. If a row is met, display victory message, confetti and applause
-9. If there is a tie, display a tie message and a crowd awww sound
+## Introduction
+This application is a recreation of the famous 2-player game, Connect 4! The goal of making this app was to not only provide a source of entertainment, but also to ingrain the principles of mobile design first and manipulating data structures. Overall, this was an extremely fun game not only to play, but also to make.
+## Instructions
+ Players have the option to set their names in the game before playing for even more immersion, and can even change their names mid-game without having to start over. When a player is prompted that is it their turn, a player will choose which empty space will be filled be his player chip color (either red or yellow). After that, the turn will switch to the other player who will choose which empty space to place his chip in. If a column is filled, the player has to select a different one. If a row of 4 is met in any direction, that player wins the game. If all the spaces are filled and there is no winner, a tie message will be displayed
+
+ ## User Experience
+ ### User Persona #1
+ John just got home from a long day of work, only to discover that his roommate has not taken out the trash. Upon discussing this with his roommate, they realize that they never set a rule for who takes out the trash. John has the great idea of using Connect 4 as a way to determine who will take out the trash. Instead of pulling out the game board and spending the time to set it up, John simply visits my web application to produce a game of Connect 4.
+
+ ### User Persona #2
+ Sheryl is a mom with 2 young kids. Oftentimes, the kids will get bored on long road trips and begin fighting with each other out of boredom. Instead of Sheryl pulling over the car for 5 minutes to sort this altercation out, she simply pulls over real quick, takes out her Tablet from her purse and loads up the Connect4 Browser Game. She hands it to her kids, who became suddenly quiet and enthralled with playing the game with each other. Sheryl gets back on the road, glad that she knew about the Connect4 Browser Game.
+## Gameplay Screenshots
+![Connect 4 Screenshot 1](images/screenshots/screenshot1.png)
+![Connect 4 Screenshot 2](images/screenshots/screenshot2.png)
+![Connect 4 Screenshot 3](images/screenshots/screenshot3.png)
 ## Pseudo-code
 1. Structure the mobile-design first web application using HTML/CSS grid/ Flexbox and Bootstrap
     1. HTML Structure
@@ -50,8 +56,12 @@
     7. When we have that winning combition, set isWinner to the player, display congradulations output, throw in some confetti and disable clicking on the board
     8. Count how many turns are taken by each player. There are a total of 42 turns that can be taken. When 42 turns has been reached, display tied game message and play awwww sound
 
+## Next Steps
+- Increase character limit for name input by decreasing font size after a certain length
+- Replace falling confetti on win with red and yellow connect4 pieces 
 
-## Credit
+
+## Credits
 #### Sounds
 [Crowd Cheer](https://soundcloud.com/59nxyejat3xt/audience-applause-matthiew11-1206899159)\
 [Crowd Aww](https://instrumentalfx.co/crowd-disappointed-sound-effect/)\
