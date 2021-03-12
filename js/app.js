@@ -236,7 +236,7 @@ function checkBoard() {
     checkDownDiagnols()
     checkColumns()
     // if the maximum amount of turns has been taken, set winner to 'T'
-    if (turnCount === 42) {
+    if (turnCount === 42 && winner === null) {
         winner = 'T'
     }
 }
