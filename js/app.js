@@ -185,6 +185,7 @@ function nextEmptyRow(column) {
 }
 // If name is split with a space, format it properly
 function formatName(name) {
+    // If the string has a streak of 3 letters in a row, it's not a real name and users are just trying to break your code. Instead, break the function and do not allow them to enter it
     let fullName = name.split(" ")
     let firstName = fullName[0]
     let lastName = fullName[1]
@@ -198,7 +199,7 @@ function toggleColor() {
         soundBtn.style.color = '#8AE38A'
         soundBtn.innerText = 'SOUND ON '
     } else if (soundToggle === false) {
-        soundBtn.style.color = '#E97C7C'
+        soundBtn.style.color = 'white'
         soundBtn.innerText = 'SOUND OFF'
     }
     // CHANGE ACTUAL WORDS DEPENDING ON TRUE OR FALSE
