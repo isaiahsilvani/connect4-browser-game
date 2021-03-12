@@ -202,6 +202,11 @@ img {
     margin: 0 0 15px 10px
 }
 
+#resetBtn, #soundBtn {
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
 #player1-settings > button {
     margin: 5px;
     width: 100px;
@@ -212,6 +217,8 @@ img {
     width: 100px;
     height: 30px;
 }
+
+
 
 input {
     width: 80%;

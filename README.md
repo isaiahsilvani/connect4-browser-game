@@ -22,7 +22,7 @@ This application is a recreation of the famous 2-player game, Connect 4! The goa
 JavaScript, HTML5, CSS3, and Bootstrap
 ## Accessiblity
 This web application features a Mobile Design First approach so that anyone with a device a browser and internet connection can play my game. Furthermore, the webAim contrast checker was used when selecting the various colors to make this a very pleasant user experience.
-## Pseudo-code
+## Pseudo-code=
 1. Structure the mobile-design first web application using HTML/CSS grid/ Flexbox and Bootstrap
     1. HTML Structure
         1. title: CONNECT 4
