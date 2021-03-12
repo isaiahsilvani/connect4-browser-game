@@ -55,21 +55,15 @@ function init() {
     player2.name = 'Player 2'
     //Have sound off when user first comes to page
     soundToggle = false;
-    toggleColor()
+    toggleText()
     //clear the actual board on the screen, not just the array in javascript
     clearBoard()
 }
 
 function render() {
-    //Display output message for who's turn it is and if 
+    // check the board for winning conditions, display who's turn it is
     checkBoard()
     turnSwitchMsg()
-    // if toggleSound is false, make corresponding text red. If on, make it green
-
-    console.log('board 2D array: ', board)
-    console.log('winner: ', winner)
-    console.log('current turn: ', turn)
-    //Check for a winner
 }
 
 function turnSwitchMsg() {
@@ -137,8 +131,7 @@ function toggleSound() {
     } else {
         soundToggle = false;
     }
-    toggleColor()
-    
+    toggleText()
 }
 
 function setPlayer2name() {
@@ -194,12 +187,10 @@ function formatName(name) {
     return fullName
 }
 
-function toggleColor() {
+function toggleText() {
     if (soundToggle === true) {
-        soundBtn.style.color = '#8AE38A'
         soundBtn.innerText = 'SOUND ON '
     } else if (soundToggle === false) {
-        soundBtn.style.color = 'white'
         soundBtn.innerText = 'SOUND OFF'
     }
     // CHANGE ACTUAL WORDS DEPENDING ON TRUE OR FALSE
