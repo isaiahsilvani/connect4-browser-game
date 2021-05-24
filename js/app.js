@@ -120,6 +120,8 @@ function handleClick(evt) {
         }
         turnCount++
         render()
+        console.log(board)
+        console.log('Turn Count: ', turnCount)
     }
 }
 // ------------ SETTINGS ---------------------
