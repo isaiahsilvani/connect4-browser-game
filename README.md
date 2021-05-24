@@ -1,6 +1,6 @@
 # CONNECT4, THE BROWSER GAME
 ### Thank you for checking out my game!
-## Play this game [now!](https://www.connect4-browser-game.surge.sh)
+## Play this game [now!](https://www.connect4-game.com)
 ## Wireframe
 ![Connect 4 Wireframe](images/connect4-wireframe.png)
 ## Introduction
